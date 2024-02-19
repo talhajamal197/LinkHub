@@ -11,8 +11,7 @@ import java.sql.Timestamp;
 
 @Repository
 public interface ProfileLikeRepository extends JpaRepository<ProfileLike, Long> {
-    // Add custom query methods if needed
-    @Query("SELECT COUNT(DISTINCT p.likedProfileId) FROM ProfileLike p WHERE p.likerId = :userId AND p.likeTimestamp BETWEEN :startTime AND :endTime")
+    @Query("SELECT COUNT( p.likedProfileId) FROM ProfileLike p WHERE p.likerId = :userId AND p.likeTimestamp BETWEEN :startTime AND :endTime")
     long countDistinctLikedUsersInTimeRange(@Param("userId") Long userId, @Param("startTime") Timestamp startTime, @Param("endTime") Timestamp endTime);
 }
 

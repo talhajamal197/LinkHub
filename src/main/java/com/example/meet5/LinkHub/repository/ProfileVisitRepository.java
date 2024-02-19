@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProfileVisitRepository extends JpaRepository<ProfileVisit, Long> {
-    // Add custom query methods if needed
 }

@@ -72,24 +72,21 @@ public class UserInteractionController {
         // Logic to check if the user exists in the database (e.g., querying the user_profile table)
         return true; // Placeholder logic, replace with actual implementation
     }
+    @Autowired
     private  FraudDetectionService fraudDetectionService;
 
     @PostMapping("/user/like")
     public String recordUserLike(@RequestBody LikeRequest likeRequest) {
-        // Check if the liker and liked profiles exist
         if (userExists(likeRequest.getLikerId()) && userExists(likeRequest.getLikedProfileId())) {
-            // Create a new ProfileLike object and save it to the database
             ProfileLike profileLike = new ProfileLike();
             profileLike.setLikerId(likeRequest.getLikerId());
             profileLike.setLikedProfileId(likeRequest.getLikedProfileId());
             profileLike.setLikeTimestamp(new Timestamp(System.currentTimeMillis()));
             profileLikeRepository.save(profileLike);
-
             if (fraudDetectionService.detectFraudulentActivity((likeRequest.getLikerId())))
             {
                 return "Fraudulent activity detected! Your account has been flagged for investigation.";
             }
-
             return "Like recorded successfully!";
         } else {
             return "Failed to record like. User does not exist.";

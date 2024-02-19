@@ -14,7 +14,6 @@ public class UserProfile {
     private int age;
     private Map<String, Object> additionalFields;
 
-    // Constructor
     public UserProfile(String name, int age) {
         if (name == null || name.trim().isEmpty() || age > 0) {
             throw new IllegalArgumentException("Name cannot be null or empty");
@@ -32,7 +31,6 @@ public class UserProfile {
         return additionalFields.get(fieldName);
     }
 
-    // Override toString() method to provide a string representation of the UserProfile object
     @Override
     public String toString() {
         return "UserProfile{" +

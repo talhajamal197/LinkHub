@@ -9,7 +9,6 @@ public class VisitRequest {
     private long visitorId;
     private long profileId;
 
-    // Getters and setters
     public long getUserIdA() {
         return visitorId;
     }

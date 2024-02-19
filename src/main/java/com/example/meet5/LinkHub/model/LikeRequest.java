@@ -10,7 +10,6 @@ public class LikeRequest {
     private long likerId;
     private long likedProfileId;
 
-    // Getters and setters
     public long getLikerId() {
         return likerId;
     }
